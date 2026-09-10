@@ -4,7 +4,7 @@ import 'package:movie_rental_mhsp/core/di/injection.dart';
 import 'package:movie_rental_mhsp/core/routes/app_router.dart';
 
 void main() async{
-  await dotenv.load();
+  //await dotenv.load();
   setupDepencendes();
 
   runApp(const MyApp());
