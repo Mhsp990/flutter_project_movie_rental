@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:http/http.dart' as hhtp;
 import 'package:movie_rental_mhsp/src/core/network/server_address.dart';
-import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
+//import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
 class MoviesDatasource {
   final hhtp.Client client;

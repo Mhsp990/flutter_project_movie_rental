@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:movie_rental_mhsp/src/core/di/injection.dart';
+import 'package:movie_rental_mhsp/src/core/features/login/controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  const new({super.key});
+
+  LoginPage({super.key});
 
 
-  final _controllerLogin = TextEditingController(text : '');
-  final _controllerPassword = TextEditingController(text : '');
+  final _controllerLoginText = TextEditingController(text : '');
+  final _controllerPasswordText = TextEditingController(text : '');
 
-  var textLogin = 'MyLogin';
-  var textPassword = 'MyPassword';
+  final controllerLogin = getIt<LoginController>();
+
+   var textLogin = 'MyLogin';
+   var textPassword = 'MyPassword';
 
 
   @override
  Widget build(BuildContext context) {
     return 
      Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.indigoAccent,
-          title : Text('Entrar')
-        ),
-
         body : Stack(
           children: [
             Opacity(
-              opacity: 0.3,
+              opacity: 0.2,
               child : Image(
                 image: AssetImage('assets/image.png'),
                 repeat : ImageRepeat.repeat,
@@ -33,40 +33,59 @@ class LoginPage extends StatelessWidget {
 
             ),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child : Column(
-              children: [
-                //Center(child : Text("Formulário")),
-            
-                TextField(
-                  controller:  _controllerLogin,
-                  decoration:  InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("Login"),
-                  ),
+            Center(
+              child: Container(
+                height: 300,
+                width: 350,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  borderRadius:  BorderRadius.circular(10),
+                  color: const Color.fromARGB(255, 110, 52, 96)
                 ),
-            
-                TextField(
-                  controller:  _controllerPassword,
-                  decoration:  InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('Password'),
-                  ),
-                ),
-            
-                Row(
-                  children: 
-                  [
-                    ElevatedButton(
-                    onPressed: (){}, 
-                    child: Text("Entrar"),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child : Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    
+                
+                    Align(child: Text("Entrar", style: TextStyle(fontSize: 20, color: Colors.white),), alignment: AlignmentGeometry.topStart,),
+                
+                    TextField(
+                      controller:  _controllerLoginText,
+                      decoration:  InputDecoration(
+                        border: OutlineInputBorder(),
+                        label: Text("Login", style: TextStyle(color: Colors.white),),
+                      ),
+                    ),
+                
+                    TextField(
+                      controller:  _controllerPasswordText,
+                      decoration:  InputDecoration(
+                        border: OutlineInputBorder(),
+                        label: Text("Password", style: TextStyle(color: Colors.white),),
+                      ),
+                    ),
+                    Align(child: Text("Esqueceu a senha", style: TextStyle(fontSize: 12, color: Colors.white),), alignment: AlignmentGeometry.topEnd,),
+                
+                    Row(
+                      children: 
+                      [
+                        ElevatedButton(
+                        onPressed: ()
+                        {
+                          print("BOTAO PRESSIONADO");
+                          controllerLogin.executeLogin(_controllerLoginText.text, _controllerPasswordText.text);
+                        }, 
+                        child: Text("Entrar"),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+                  ),
               ),
+            ),
           ],
         )
     );
