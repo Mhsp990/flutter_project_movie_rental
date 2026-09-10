@@ -12,12 +12,12 @@ class MoviesRepository {
   MoviesRepository(this.moviesDatasource);
 
 
-  Future<List<int>> getMovies() async{
+  Future<Movies> getMovies() async{
     try{
 
       final response = await moviesDatasource.getMovies();
 
-      return MoviesAdapter.decodeProtoMovie(response).cover;
+      return MovieAdapter.decodeProtoMovies(response);
 
     } catch(e){
       throw Exception('Failed to get movie list information');
@@ -29,7 +29,7 @@ class MoviesRepository {
     try{
 
       Rental rent = Rental(userId: userId, movieId: movieId);
-      final response = await moviesDatasource.rentMovie(MoviesAdapter.encodeProtoRental(rent));
+      final response = await moviesDatasource.rentMovie(MovieAdapter.encodeProtoRental(rent));
 
       return response;
 
@@ -39,13 +39,13 @@ class MoviesRepository {
   }
 
 
-  Future<Movie> moviesByUser(int userId) async{
+  Future<Movies> moviesByUser(int userId) async{
     try{
       User user = User(id : userId, username: '', password: '');
 
       final response = await moviesDatasource.moviesByUser(LoginAdapter.encodeProto(user));
 
-      return MoviesAdapter.decodeProtoMovie(response);
+      return MovieAdapter.decodeProtoMovies(response);
 
     } catch(e){
       throw Exception('Failed to get movie list information');
@@ -57,7 +57,7 @@ class MoviesRepository {
     try{
 
       Rental rent = Rental(userId: userId, movieId: movieId);
-      final response = await moviesDatasource.watchMovieAndReturn(MoviesAdapter.encodeProtoRental(rent));
+      final response = await moviesDatasource.watchMovieAndReturn(MovieAdapter.encodeProtoRental(rent));
 
       return response;
 

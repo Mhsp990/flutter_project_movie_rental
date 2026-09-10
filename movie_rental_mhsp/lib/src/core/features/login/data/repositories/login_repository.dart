@@ -14,9 +14,9 @@ class LoginRepository {
       User user = User(username : login, password: password );
       final result = await loginDatasource.validateLogin(LoginAdapter.encodeProto(user));
       
-      final result_decode = LoginAdapter.decodeProto(result);
+      final resultDecode = LoginAdapter.decodeProto(result);
 
-      return result_decode.id;
+      return resultDecode.id;
 
     } catch(e){
       throw Exception('Failed to post');

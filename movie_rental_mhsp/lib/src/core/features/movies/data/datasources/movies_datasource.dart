@@ -26,7 +26,7 @@ class MoviesDatasource {
   Future<bool> rentMovie(Uint8List rent) async{
     try{
       final response = await client.post(
-        Uri.parse(rentalMovie), body: rent, headers: {'Content-Type': 'application/x-protobuf', 'X-Student-Token' : userToken};
+        Uri.parse(rentalMovie), body: rent, headers: {'Content-Type': 'application/x-protobuf', 'X-Student-Token' : userToken}
         );
       if (response.statusCode == 200){
         return true;

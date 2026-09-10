@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
-class MoviesAdapter {
+class MovieAdapter {
   static Movie decodeProtoMovie(Uint8List data){
       try{
         return Movie.fromBuffer(data);
@@ -10,6 +10,15 @@ class MoviesAdapter {
         throw Exception("Error : Could not decode MOVIE data");
       }
     }
+
+
+  static Movies decodeProtoMovies(Uint8List data){
+      try{
+        return Movies.fromBuffer(data);
+      } catch (e){
+        throw Exception("Error : Could not decode MOVIE data");
+      }
+  }
 
 
   static Uint8List encodeProtoMovie(Movie movie){
