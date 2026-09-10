@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:movie_rental_mhsp/core/di/injection.dart';
-import 'package:movie_rental_mhsp/core/routes/app_router.dart';
+import 'package:movie_rental_mhsp/src/core/di/injection.dart';
+import 'package:movie_rental_mhsp/src/core/routes/app_router.dart';
 
 void main() async{
   //await dotenv.load();

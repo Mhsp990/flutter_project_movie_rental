@@ -16,8 +16,8 @@ class CustomMovieUnitDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: CONTAINER_WIDTH,
-      height: CONTAINER_HEIGHT,
+      //width: CONTAINER_WIDTH,
+      //height: CONTAINER_HEIGHT,
       decoration: BoxDecoration(
         border : Border.all(), borderRadius: BorderRadius.circular(10),
       ),
@@ -26,8 +26,8 @@ class CustomMovieUnitDisplay extends StatelessWidget {
         children: [
           Image(
           image : AssetImage('assets/image.png'), //TODO : Mudar para lidar com image memory
-          width: CONTAINER_WIDTH - 20,
-          height: CONTAINER_HEIGHT - 30,
+          //width: CONTAINER_WIDTH - 20,
+          //height: CONTAINER_HEIGHT - 30,
           ),
 
           Text(
