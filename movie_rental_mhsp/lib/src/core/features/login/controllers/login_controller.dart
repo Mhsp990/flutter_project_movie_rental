@@ -1,6 +1,7 @@
 import 'package:movie_rental_mhsp/src/core/features/login/data/repositories/login_repository.dart';
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 import 'package:signals/signals.dart';
+import 'package:go_router/go_router.dart';
 
 
 class LoginController {
@@ -24,6 +25,8 @@ void executeLogin(String login, String password) async{
   try{
     int userId = await loginRepository.executeLogin(login, password);
     print("Login funcionou!");
+
+    User user =User(id : userId, username: login, password: password);
   }
   catch(e){
     print(e);

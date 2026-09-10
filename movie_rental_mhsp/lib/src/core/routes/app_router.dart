@@ -15,7 +15,7 @@ final router = GoRouter(
       path: '/Movies-page',
       builder: (context, state) {
         final extraUser = GoRouterState.of(context).extra! as User;
-
+        
         return MoviesPage(extraUser);
       } ,
     ),

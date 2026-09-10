@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+//import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
 import 'package:movie_rental_mhsp/src/core/features/login/controllers/login_controller.dart';
+import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -76,6 +78,7 @@ class LoginPage extends StatelessWidget {
                         {
                           print("BOTAO PRESSIONADO");
                           controllerLogin.executeLogin(_controllerLoginText.text, _controllerPasswordText.text);
+                          
                         }, 
                         child: Text("Entrar"),
                         ),
