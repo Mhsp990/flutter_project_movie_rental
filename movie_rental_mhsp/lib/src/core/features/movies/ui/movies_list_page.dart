@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/ui/ui_components/movie_grid_builder.dart';
@@ -39,6 +40,7 @@ class MoviesListPage extends StatelessWidget {
                       // _controllerUser.text = user.name;
                       // _controllerEmail.text = user.email;
                       // _controllerAdress.text = user.adress;
+                      context.push('/Movies-page-info', extra: movie); 
                     },
                     movies: _controller.movies,
                   );
