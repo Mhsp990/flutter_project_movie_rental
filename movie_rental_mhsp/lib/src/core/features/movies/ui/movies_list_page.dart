@@ -32,14 +32,17 @@ class MoviesListPage extends StatelessWidget {
                     border: Border.all(),
                     borderRadius: BorderRadius.circular(10)),
                 child: SignalBuilder(
-                  builder: (context) => GridBuilder(
+                  builder: (context) { 
+                    _controller.movies.length;
+                    return GridBuilder(
                     onTap: (movie) {
                       // _controllerUser.text = user.name;
                       // _controllerEmail.text = user.email;
                       // _controllerAdress.text = user.adress;
                     },
                     movies: _controller.movies,
-                  ),
+                  );
+                  },
                 ),
               ),
             )

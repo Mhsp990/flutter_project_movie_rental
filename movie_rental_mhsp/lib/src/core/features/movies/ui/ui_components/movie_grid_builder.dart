@@ -41,8 +41,8 @@ class GridBuilderState extends State<GridBuilder> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //Inserir o component que mostr UMA UNIDADE de filme.
-                Image.memory(Uint8List.fromList(movie.cover)),
-                Text(movie.value.toString()),
+                Expanded(child: Image.memory(Uint8List.fromList(movie.cover))),
+                Text(movie.value.toStringAsFixed(2)),
               ],
             ),
           ),
