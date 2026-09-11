@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
-import 'package:movie_rental_mhsp/src/core/network/server_address.dart';
+//import 'package:movie_rental_mhsp/src/core/network/server_address.dart';
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
 class MoveInfoPage extends StatelessWidget {
@@ -19,6 +19,15 @@ class MoveInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final moviesController = getIt<MoviesController>();
 
+    final String buttonText;
+
+    if (moviesController.isRental == true){
+      buttonText = "Rental";
+    }
+    else
+    {
+      buttonText = "Watch";
+    }
     
     return Scaffold(
       appBar: AppBar(
@@ -112,16 +121,22 @@ class MoveInfoPage extends StatelessWidget {
                           backgroundColor: const Color.fromARGB(255, 182, 165, 185),
                         ), 
                         onPressed: () async {
-                          print("Botao de alugar filme pressionado.");
-                          bool? success = await moviesController.rentMovie(moviesController.user!.id, movie.id);
-                          if (success){
+                          if (moviesController.isRental){
+                            print("Botao de alugar filme pressionado.");
+                            bool? success = await moviesController.rentMovie(moviesController.user!.id, movie.id);
+                            if (success){
+                              context.pop();
+                            }
+                            else{
+                              //TODO : Mensagem de erro.
+                            }
+                          }else{
+                            print("Botao de ASSISTIR e DEVOLVER filme pressionado");
+                            bool result = await moviesController.watchMovieAndReturn(moviesController.user!.id, movie.id);
                             context.pop();
-                          }
-                          else{
-                            //TODO : Mensagem de erro.
-                          }
+                          }                          
                         },
-                        child: const Text('Rental'),
+                        child: Text(buttonText),
                       ),
                 ],
               )

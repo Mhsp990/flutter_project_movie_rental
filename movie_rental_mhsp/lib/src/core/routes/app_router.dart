@@ -26,6 +26,15 @@ final router = GoRouter(
       builder: (context, state) {
         final extraMovie = GoRouterState.of(context).extra! as Movie;
         
+        return MoveInfoPage(movie: extraMovie);
+      },
+    ),
+
+    GoRoute(
+      path: '/Movies-rental-info',
+      builder: (context, state) {
+        final extraMovie = GoRouterState.of(context).extra! as Movie;
+        
         return MoveInfoPage(movie: extraMovie,);
       },
     ),

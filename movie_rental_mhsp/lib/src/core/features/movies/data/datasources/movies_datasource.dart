@@ -79,7 +79,9 @@ class MoviesDatasource {
       }
     }
     catch(e){
+      print(e);
       throw Exception('Could not connect to server when trying to watch movie.');
+      
     }
   }
 

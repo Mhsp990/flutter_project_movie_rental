@@ -35,7 +35,8 @@ class MovieRentalPage extends StatelessWidget {
                     _controller.movies.length;
                     return GridBuilder(
                     onTap: (movie) {
-                      context.push('/Movies-page-info', extra: movie); 
+                      _controller.enableOrDisableRental(false);
+                      context.push('/Movies-rental-info', extra: movie); 
                     },
                     movies: _controller.movies,
                   );

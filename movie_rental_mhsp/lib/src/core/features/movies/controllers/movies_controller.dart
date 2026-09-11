@@ -5,12 +5,14 @@ import 'package:signals/signals.dart';
 class MoviesController {
   final _moviesList = listSignal<Movie>([]);
   final _user = signal<User?>(null);
+  final _isRental = signal<bool>(false);
 
   final MoviesRepository _moviesRepository;
  
 
   List<Movie> get movies => _moviesList.value;
   User? get user => _user.value;
+  bool get isRental => _isRental.value;
 
 
   MoviesController(this._moviesRepository);
@@ -18,6 +20,10 @@ class MoviesController {
 
   void initUser(User user){
     _user.value = user;
+  }
+
+  void enableOrDisableRental(bool desired){
+    _isRental.value = desired;
   }
 
 
@@ -74,7 +80,7 @@ class MoviesController {
   }
 
 
-  void watchMovieAndReturn(int userId, int movieId) async {
+  Future<bool> watchMovieAndReturn(int userId, int movieId) async {
     try{
       final result = await _moviesRepository.watchMovieAndReturn(userId, movieId);
       
@@ -85,10 +91,13 @@ class MoviesController {
         print("Erro : Não foi possível assistir e devolver o filme");
       }
 
+      return result;
+
     }
     catch(e){
       print(e);
     }
+    return false;
   }
 
 

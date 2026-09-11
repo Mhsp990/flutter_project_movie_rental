@@ -35,6 +35,8 @@ class MoviesListPage extends StatelessWidget {
                     _controller.movies.length;
                     return GridBuilder(
                     onTap: (movie) {
+                      print("INICIANDO MOVIE PAGE INFO");
+                      _controller.enableOrDisableRental(true);
                       context.push('/Movies-page-info', extra: movie); 
                     },
                     movies: _controller.movies,
