@@ -18,15 +18,13 @@ class MoviesListPage extends StatelessWidget {
 
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Forms'),
-        backgroundColor: Colors.purple[200],
-      ),
+      backgroundColor: const Color.fromARGB(255, 31, 8, 71),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            SizedBox(height: 15,),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -37,9 +35,6 @@ class MoviesListPage extends StatelessWidget {
                     _controller.movies.length;
                     return GridBuilder(
                     onTap: (movie) {
-                      // _controllerUser.text = user.name;
-                      // _controllerEmail.text = user.email;
-                      // _controllerAdress.text = user.adress;
                       context.push('/Movies-page-info', extra: movie); 
                     },
                     movies: _controller.movies,

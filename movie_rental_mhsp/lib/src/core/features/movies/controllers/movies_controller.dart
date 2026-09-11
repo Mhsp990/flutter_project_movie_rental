@@ -63,7 +63,7 @@ class MoviesController {
       batch(() //Atualiza tudo de vez
       {
         _moviesList.clear();
-        _moviesList.addAll(result.movies);
+        _moviesList.value = result.movies;
       });
 
     }
