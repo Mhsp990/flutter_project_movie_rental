@@ -16,7 +16,9 @@ class MovieAdapter {
       try{
         return Movies.fromBuffer(data);
       } catch (e){
+        print(e);
         throw Exception("Error : Could not decode MOVIE data");
+        
       }
   }
 

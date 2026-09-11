@@ -12,9 +12,16 @@ class MoviesDatasource {
 
   Future<Uint8List> getMovies() async{
     try{
-      final response = await client.post(Uri.parse(availableMovies));
+      final response = await client.get(Uri.parse(availableMovies));
       
-      return response.bodyBytes;
+      if (response.statusCode == 200){
+        return response.bodyBytes;
+      }
+      else{
+        print('Error : Could not retrieve movie lists information. Status code is different than 200 (OK)');
+        throw Exception('Error : Could not retrieve movie lists information. Status code is different than 200 (OK)');
+      }
+      
         
     }
     catch(e){

@@ -34,7 +34,7 @@ class MoviesRepository {
       return response;
 
     } catch(e){
-      throw Exception('Failed to get movie list information');
+      throw Exception('Failed to rent a movie');
     }
   }
 
@@ -48,7 +48,7 @@ class MoviesRepository {
       return MovieAdapter.decodeProtoMovies(response);
 
     } catch(e){
-      throw Exception('Failed to get movie list information');
+      throw Exception('Failed to get user owned list');
     }
   }
 
@@ -62,7 +62,7 @@ class MoviesRepository {
       return response;
 
     } catch(e){
-      throw Exception('Failed to get movie list information');
+      throw Exception('Failed to watch movie and return it.');
     }
   }
 

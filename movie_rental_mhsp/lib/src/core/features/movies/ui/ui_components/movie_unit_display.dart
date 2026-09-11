@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
 
-const double CONTAINER_HEIGHT = 300.0;
-const double CONTAINER_WIDTH = 200.0;
+//const double CONTAINER_HEIGHT = 300.0;
+//const double CONTAINER_WIDTH = 200.0;
 
 class CustomMovieUnitDisplay extends StatelessWidget {
   
 
-  final String informationDisplay; //
-  //final Image movieImage;
+  final Movie movie;
 
-  const new({super.key, required this.informationDisplay});
+  const new({super.key, required this.movie});
 
 
   @override
@@ -24,15 +25,11 @@ class CustomMovieUnitDisplay extends StatelessWidget {
       child: Column(
         mainAxisAlignment:  MainAxisAlignment.spaceAround,
         children: [
-          Image(
-          image : AssetImage('assets/image.png'), //TODO : Mudar para lidar com image memory
-          //width: CONTAINER_WIDTH - 20,
-          //height: CONTAINER_HEIGHT - 30,
-          ),
+          
+          Image.memory(Uint8List.fromList(movie.cover)),
 
           Text(
-            informationDisplay,
-            
+            movie.value.toString(),
           ),
         ],
 

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:movie_rental_mhsp/src/core/features/login/controllers/login_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/login/data/datasources/login_datasource.dart';
 import 'package:movie_rental_mhsp/src/core/features/login/data/repositories/login_repository.dart';
+import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/data/datasources/movies_datasource.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/data/repositories/movies_repository.dart';
 
@@ -21,5 +22,6 @@ void setupDepencendes() {
   getIt.registerFactory(() => MoviesDatasource(getIt()));
 
   getIt.registerLazySingleton<LoginController>(() => LoginController(getIt()));
+  getIt.registerLazySingleton<MoviesController>(() => MoviesController(getIt()));
   
 }
