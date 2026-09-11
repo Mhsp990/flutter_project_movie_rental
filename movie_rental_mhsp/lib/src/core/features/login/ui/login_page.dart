@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 //import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
 import 'package:movie_rental_mhsp/src/core/features/login/controllers/login_controller.dart';
@@ -74,10 +75,18 @@ class LoginPage extends StatelessWidget {
                       children: 
                       [
                         ElevatedButton(
-                        onPressed: ()
+                        onPressed: () async
                         {
                           print("BOTAO PRESSIONADO");
-                          controllerLogin.executeLogin(_controllerLoginText.text, _controllerPasswordText.text);
+                          User? user = await controllerLogin.executeLogin(_controllerLoginText.text, _controllerPasswordText.text);
+                          
+                          if (user != Null){
+                            context.go('/Movies-page', extra: user);
+                          }
+                          else{
+                            //TODO
+                            print("Não foi possível realizar o login");
+                          }
                           
                         }, 
                         child: Text("Entrar"),
