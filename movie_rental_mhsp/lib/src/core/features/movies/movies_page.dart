@@ -18,6 +18,8 @@ class MoviesPage extends StatelessWidget {
 
     User user = GoRouterState.of(context).extra! as User;
 
+    moviesController.initUser(user);
+
 
 
     return DefaultTabController(

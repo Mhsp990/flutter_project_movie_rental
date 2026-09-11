@@ -16,6 +16,11 @@ class MoviesController {
   MoviesController(this._moviesRepository);
 
 
+  void initUser(User user){
+    _user.value = user;
+  }
+
+
   void getMoviesList() async {
     try{
       final result = await _moviesRepository.getMovies();
@@ -32,20 +37,23 @@ class MoviesController {
   }
   
 
-  void rentMovie(int userId, int movieId) async{
+  Future<bool> rentMovie(int userId, int movieId) async{
     try{
       final result = await _moviesRepository.rentMovie(userId, movieId);
       if (result){
         print("Filme alugado com sucesso");
+        return true;
       }
       else{
         print("Não foi possível alugar o filme.");
+        return false;
       }
+
     }
     catch(e){
       print(e);
-
     }
+    return false;
   }
 
 

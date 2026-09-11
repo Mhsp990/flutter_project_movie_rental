@@ -1,6 +1,10 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:movie_rental_mhsp/src/core/di/injection.dart';
+import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
+import 'package:movie_rental_mhsp/src/core/network/server_address.dart';
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
 class MoveInfoPage extends StatelessWidget {
@@ -13,10 +17,24 @@ class MoveInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final moviesController = getIt<MoviesController>();
+
+    
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Movies List', style: TextStyle(
+          color: Color.fromARGB(255, 202, 201, 198),
+
+        ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 87, 60, 161),
+        
+      ),
+
+
       body: Container(
-        color : const Color.fromARGB(255, 129, 72, 72),
-        padding: const EdgeInsets.all(16),
+        color : const Color.fromARGB(255, 73, 13, 83),
+        padding: const EdgeInsets.all(50),
         child: Row(
       children: [
         Column(
@@ -83,7 +101,9 @@ class MoveInfoPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                 OutlinedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      context.pop()
+                    },
                     child: const Text('Cancel'),
                       ),
                 const SizedBox(width: 16),
@@ -91,7 +111,16 @@ class MoveInfoPage extends StatelessWidget {
                         style: OutlinedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(255, 182, 165, 185),
                         ), 
-                        onPressed: () => {},
+                        onPressed: () async {
+                          print("Botao de alugar filme pressionado.");
+                          bool? success = await moviesController.rentMovie(moviesController.user!.id, movie.id);
+                          if (success){
+                            context.pop();
+                          }
+                          else{
+                            //TODO : Mensagem de erro.
+                          }
+                        },
                         child: const Text('Rental'),
                       ),
                 ],
