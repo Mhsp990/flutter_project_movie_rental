@@ -81,12 +81,30 @@ class LoginPage extends StatelessWidget {
                           print("BOTAO PRESSIONADO");
                           User? user = await controllerLogin.executeLogin(_controllerLoginText.text, _controllerPasswordText.text);
                           
-                          if (user != Null){
+                          if (user != null){
                             context.go('/Movies-page', extra: user);
                           }
                           else{
                             //TODO
                             print("Não foi possível realizar o login");
+                            showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("Erro ao tentar logar"),
+                                      content: const Text("O login ou senha podem estar incorretos."),
+                                      actions: [
+                                        TextButton(
+                                          child: const Text("OK"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop(); // Closes the dialog
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+
                           }
                           
                         }, 
