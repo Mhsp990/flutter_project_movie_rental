@@ -132,9 +132,26 @@ class MoveInfoPage extends StatelessWidget {
                               context.pop();
                             }
                             else{
-                              //TODO : Mensagem de erro.
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text("Ação proibida!"),
+                                    content: const Text("Não é possível alugar um filme que você já possui"),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text("OK"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop(); // Closes the dialog
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+
                             }
-                          }else{
+                          }else{ // Se não for tela de alugar, é a tela de assistir e devolver.
                             print("Botao de ASSISTIR e DEVOLVER filme pressionado");
                             bool result = await rentalController.watchMovieAndReturn(rentalController.user!.id, movie.id);
                             context.pop();

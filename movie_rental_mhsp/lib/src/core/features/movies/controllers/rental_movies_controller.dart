@@ -1,3 +1,4 @@
+//import 'package:movie_rental_mhsp/src/core/di/injection.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/data/repositories/movies_repository.dart';
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 import 'package:signals/signals.dart';
@@ -59,6 +60,11 @@ class RentalController {
 
   Future<bool> rentMovie(int userId, int movieId) async{
     try{
+
+      if (_checkUserHasMovie(movieId)){ //Verifica se o usuario já possui o filme
+        return false;
+      }
+
       final result = await _moviesRepository.rentMovie(userId, movieId);
       if (result){
         print("Filme alugado com sucesso");
@@ -75,5 +81,24 @@ class RentalController {
     }
     return false;
   }
+
+
+
+bool _checkUserHasMovie(int movieId){
+  if (user != null){
+    getMoviesByUser(user!.id); //Garantir que está atualizado.
+  }
+  else{
+    print("ERRO : Usuario é nulo!"); //TODO : Lançar erro.
+  }
+  for (Movie mov in movies){
+    if (mov.id == movieId){
+      return true;
+    }
+  }
+
+  return false;
+}
+
 
 }
