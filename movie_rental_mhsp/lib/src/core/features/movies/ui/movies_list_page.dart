@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
+import 'package:movie_rental_mhsp/src/core/features/movies/controllers/available_movies_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/ui/ui_components/movie_grid_builder.dart';
 import 'package:signals/signals_flutter.dart';
@@ -8,7 +9,8 @@ import 'package:signals/signals_flutter.dart';
 class MoviesListPage extends StatelessWidget {
   const new({super.key});
 
-  static final _controller = getIt<MoviesController>();
+  static final _movieController = getIt<MoviesController>();
+  static final _controller = getIt<AvailableMoviesController>();
 
     @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class MoviesListPage extends StatelessWidget {
                     return GridBuilder(
                     onTap: (movie) {
                       print("INICIANDO MOVIE PAGE INFO");
-                      _controller.enableOrDisableRental(true);
+                      _movieController.enableOrDisableRental(true);
                       context.push('/Movies-page-info', extra: movie); 
                     },
                     movies: _controller.movies,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
+import 'package:movie_rental_mhsp/src/core/features/movies/controllers/rental_movies_controller.dart';
 //import 'package:movie_rental_mhsp/src/core/network/server_address.dart';
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
 
@@ -18,6 +19,8 @@ class MoveInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final moviesController = getIt<MoviesController>();
+    final rentalController = getIt<RentalController>();
+    
 
     final String buttonText;
 
@@ -123,7 +126,8 @@ class MoveInfoPage extends StatelessWidget {
                         onPressed: () async {
                           if (moviesController.isRental){
                             print("Botao de alugar filme pressionado.");
-                            bool? success = await moviesController.rentMovie(moviesController.user!.id, movie.id);
+                            bool? success = await rentalController.rentMovie(rentalController.user!.id, movie.id);
+                            
                             if (success){
                               context.pop();
                             }
@@ -132,7 +136,7 @@ class MoveInfoPage extends StatelessWidget {
                             }
                           }else{
                             print("Botao de ASSISTIR e DEVOLVER filme pressionado");
-                            bool result = await moviesController.watchMovieAndReturn(moviesController.user!.id, movie.id);
+                            bool result = await rentalController.watchMovieAndReturn(rentalController.user!.id, movie.id);
                             context.pop();
                           }                          
                         },

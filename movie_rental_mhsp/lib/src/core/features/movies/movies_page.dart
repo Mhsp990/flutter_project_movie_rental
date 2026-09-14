@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_rental_mhsp/src/core/di/injection.dart';
+import 'package:movie_rental_mhsp/src/core/features/movies/controllers/available_movies_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/controllers/movies_controller.dart';
+import 'package:movie_rental_mhsp/src/core/features/movies/controllers/rental_movies_controller.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/ui/movie_rental_page.dart';
 import 'package:movie_rental_mhsp/src/core/features/movies/ui/movies_list_page.dart';
 import 'package:movie_rental_mhsp/src/shared/proto/login_package.pb.dart';
@@ -11,16 +13,19 @@ class MoviesPage extends StatelessWidget {
   const new(this.user, {super.key});
 
   static final MoviesController moviesController = getIt<MoviesController>();
+  static final AvailableMoviesController availableController = getIt<AvailableMoviesController>();
+  static final RentalController rentalController = getIt<RentalController>();
+
 
 
   @override
   Widget build(BuildContext context) {
 
-
     User user = GoRouterState.of(context).extra! as User;
 
     moviesController.initUser(user);
-
+    rentalController.initUser(user);
+    availableController.initUser(user);
 
 
     return DefaultTabController(

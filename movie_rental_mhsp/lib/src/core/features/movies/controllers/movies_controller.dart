@@ -17,9 +17,9 @@ class MoviesController {
 
   MoviesController(this._moviesRepository);
 
-
   void initUser(User user){
     _user.value = user;
+
   }
 
   void enableOrDisableRental(bool desired){
@@ -28,77 +28,77 @@ class MoviesController {
 
 
   void getMoviesList() async {
-    try{
-      final result = await _moviesRepository.getMovies();
-    batch(() //Atualiza tudo de vez
-    {
-      _moviesList.clear();
-      _moviesList.value = result.movies;
-    });
+    // try{
+    //   final result = await _moviesRepository.getMovies();
+    // batch(() //Atualiza tudo de vez
+    // {
+    //   _moviesList.clear();
+    //   _moviesList.value = result.movies;
+    // });
 
-    }
-    catch(e){
-      print(e);
-    }
+    // }
+    // catch(e){
+    //   print(e);
+    // }
   }
   
 
-  Future<bool> rentMovie(int userId, int movieId) async{
-    try{
-      final result = await _moviesRepository.rentMovie(userId, movieId);
-      if (result){
-        print("Filme alugado com sucesso");
-        return true;
-      }
-      else{
-        print("Não foi possível alugar o filme.");
-        return false;
-      }
+  // Future<bool> rentMovie(int userId, int movieId) async{
+  //   try{
+  //     final result = await _moviesRepository.rentMovie(userId, movieId);
+  //     if (result){
+  //       print("Filme alugado com sucesso");
+  //       return true;
+  //     }
+  //     else{
+  //       print("Não foi possível alugar o filme.");
+  //       return false;
+  //     }
 
-    }
-    catch(e){
-      print(e);
-    }
-    return false;
-  }
-
-
-  void getMoviesByUser(int userId) async{
-      try{
-      final result = await _moviesRepository.moviesByUser(userId);
-      batch(() //Atualiza tudo de vez
-      {
-        _moviesList.clear();
-        _moviesList.value = result.movies;
-      });
-
-    }
-    catch(e){
-      print(e);
-
-    }
-  }
+  //   }
+  //   catch(e){
+  //     print(e);
+  //   }
+  //   return false;
+  // }
 
 
-  Future<bool> watchMovieAndReturn(int userId, int movieId) async {
-    try{
-      final result = await _moviesRepository.watchMovieAndReturn(userId, movieId);
+  // void getMoviesByUser(int userId) async{
+  //     try{
+  //     final result = await _moviesRepository.moviesByUser(userId);
+  //     batch(() //Atualiza tudo de vez
+  //     {
+  //       _moviesList.clear();
+  //       _moviesList.value = result.movies;
+  //     });
+
+  //   }
+  //   catch(e){
+  //     print(e);
+
+  //   }
+  // }
+
+
+  // Future<bool> watchMovieAndReturn(int userId, int movieId) async {
+  //   try{
+  //     final result = await _moviesRepository.watchMovieAndReturn(userId, movieId);
       
-      if (result){
-        print("Filme foi assistido e devolvido com sucesso");
-      }
-      else{
-        print("Erro : Não foi possível assistir e devolver o filme");
-      }
+  //     if (result){
+  //       print("Filme foi assistido e devolvido com sucesso");
+  //     }
+  //     else{
+  //       print("Erro : Não foi possível assistir e devolver o filme");
+  //     }
 
-      return result;
+  //     return result;
 
-    }
-    catch(e){
-      print(e);
-    }
-    return false;
-  }
+  //   }
+  //   catch(e){
+  //     print(e);
+  //   }
+  //   return false;
+  // }
 
 
 
