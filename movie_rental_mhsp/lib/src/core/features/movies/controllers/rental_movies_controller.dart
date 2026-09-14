@@ -43,6 +43,7 @@ class RentalController {
       
       if (result){
         print("Filme foi assistido e devolvido com sucesso");
+        getMoviesByUser(userId);
       }
       else{
         print("Erro : Não foi possível assistir e devolver o filme");
